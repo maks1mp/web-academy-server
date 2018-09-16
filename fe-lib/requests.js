@@ -71,6 +71,9 @@ const requests = (function() {
                     headers: getHeaders(),
                     body: makeString(purchaser)
                 }), handlers);
+            },
+            getPurchased(handlers ={}) {
+                return perform(fetch(uri('/animals/purchased')), handlers);
             }
         }
     }

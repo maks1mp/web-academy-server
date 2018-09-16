@@ -24,11 +24,20 @@ class Animals {
             .then(progressAnimal => {
                 if (progressAnimal.length === 0) {
                     return global.db.collection(COLLECTIONS.PROGRESS).insertOne(animalData)
+                        .then(res => {
+                            return global.db.collection(COLLECTIONS.ANIMALS).deleteOne({_id: ObjectID(animalData.animal._id)})
+                        })
                 } else {
                     return null;
                 }
             })
-            .then(result => result ? result.insertedId : result)
+            .then(result => result ? result.deletedCount : result)
+    }
+
+    getPurchased(req, res) {
+        return global.db.collection(COLLECTIONS.PURCHASED).find({}).toArray()
+            .then(animals => res.status(200).send(Responses.success(DBResponseParser.data(animals))))
+            .catch(e => errorHandler(e, req, res));
     }
 
     purchaseCurrentAnimal(purchaser) {
@@ -78,15 +87,23 @@ class Animals {
 
         this.purchaseCurrentAnimal(purchaserData)
             .then(result => {
-                return global.db.collection(COLLECTIONS.USERS).update({}, {$set: {
+                return global.db.collection(COLLECTIONS.USERS).updateMany({}, {$set: {
                     didBet: false,
                     betOnCurrent: 0
                 }}, {upsert: true});
             })
             .then(result => {
-                const {addedBy, ...rest} = result;
+                return global.db.collection(COLLECTIONS.ANIMALS).find({}).toArray().then(animals => {
+                    const [result] = animals;
 
-                return this.insertToProgress({animal: rest, addedBy});
+                    console.log(result);
+
+                    if (result) {
+                        const {addedBy, ...rest} = result;
+
+                        return this.insertToProgress({animal: rest, addedBy});
+                    }
+                })
             })
             .then(result => {
                 if (result) {
@@ -147,16 +164,14 @@ class Animals {
     remove(req, res) {
         const {id} = req.params;
 
-        console.log(id);
-
         global.db.collection(COLLECTIONS.ANIMALS).deleteOne({_id: ObjectID(id)})
-        .then(dbResult => {
-            if (dbResult.deletedCount > 0) {
-                res.status(201).send(Responses.success());
-            } else {
-                res.status(404).send(Responses.error({message: 'Animal not found'}));
-            }
-        })
+            .then(dbResult => {
+                if (dbResult.deletedCount > 0) {
+                    res.status(201).send(Responses.success());
+                } else {
+                    res.status(404).send(Responses.error({message: 'Animal not found'}));
+                }
+            })
         .catch(e => errorHandler(e, req, res));
     }
 }

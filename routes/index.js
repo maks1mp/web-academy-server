@@ -18,6 +18,7 @@ router.route('/animals/delete/:id').delete(animals.remove.bind(animals));
 router.route('/animals').get(animals.getAll.bind(animals));
 router.route('/animals/in-progress').get(animals.getInProgress.bind(animals));
 router.route('/animals/buy').post(animals.buyAnimal.bind(animals));
+router.route('/animals/purchased').get(animals.getPurchased.bind(animals));
 
 
 module.exports = router;
