@@ -1,0 +1,239 @@
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    height: 70px;
+    background-color: rgb(53, 51, 51);
+    position: fixed;
+    padding: 0 30px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-width: 240px;   
+}
+
+#admin-hidden {
+    display: none;
+}
+#admin-hidden:focus, #admin-hidden:active {
+    text-decoration: none;
+    outline: none;
+}
+
+.admin-header .admin-hello {
+    background-color: rgb(53, 51, 51);
+    border: none;
+    width: 150px;
+    color: white;
+    margin: 0 0;
+    font: 400 18px "Century Gothic";
+}
+
+.admin-body{
+    background-color: rgb(201, 199, 199);
+}
+
+.admin-main {
+    display: flex;
+    justify-content: space-between;   
+}
+
+.admin-sidebar button{
+    width: 100%;
+    margin: 30px 0;
+    height: 50px;
+    background-color: white;
+    border: none;
+    text-align: left;
+    padding-left: 40px;
+    font: 500 18px "Century Gothic";
+    color: rgb(100, 96, 96);    
+}
+
+.admin-sidebar i{
+   margin: 0 8px;    
+}
+
+.admin-sidebar button:hover {
+    color:rgb(74, 121, 248);    
+}
+
+.admin-sidebar button:focus,
+.admin-sidebar button:active{
+    outline: none;
+}
+
+.admin-sidebar{
+    padding-top: 25px;
+    width: 250px;
+    height: calc(100vh - 71px);
+    background-color: white;    
+    position: fixed;
+    top: 70px; 
+}
+
+.admin-main-div{
+    width: 100%;
+    padding-left: 250px;
+    padding-top: 90px;
+}
+
+.admin-div-active, .admin-div-sold, .admin-div-users, .admin-add {
+    display: none;
+    width: 1200px;   
+    margin: 70px auto;   
+}
+
+.admin-main-div table {
+    width: 100%;
+    border-collapse:separate;
+    border-spacing: 0 10px;
+    overflow: auto;
+}
+
+.admin-main-div table td {
+    vertical-align: middle;
+    padding: 7px;  
+}
+
+.admin-main-div table tr{
+    background-color: white;
+    height: 70px;
+    font: 500 14px "Century Gothic";
+    color: rgb(105, 103, 103);
+    text-align: center;
+}
+.admin-main-div table tr button{
+    color: rgb(139, 139, 139);
+    border: none;
+    background-color: transparent;
+    font-size: 17px;
+}
+
+.admin-main-div table tr button:hover{
+    color:rgb(74, 121, 248);
+}
+.admin-main-div table tr button:active,
+.admin-main-div table tr button:focus{
+    outline: none;
+}
+.admin-main-div table thead tr{
+    font: 500 18px "Century Gothic";
+}
+
+.admin-main-div table tbody tr:nth-child(odd){
+    background-color: rgb(231, 229, 229);
+}
+
+.admin-visible{
+    display: block;
+}
+
+.admin-invisible{
+    display: none;
+}
+
+
+.admin-add{
+    border-top: 40px solid rgb(156, 155, 155);;
+    width: 550px;
+    height: 700px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+}
+
+.admin-add form label{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: rgb(110, 108, 108);
+    font: 500 18px "Century Gothic";
+}
+
+.admin-add form label input{
+    text-align: center;
+    width: 300px;
+    height: 35px;
+    font: 500 18px "Century Gothic";
+    margin: 15px 0;
+}
+
+.admin-addbutton{
+    width: 300px;
+    height: 45px;
+    background-color:rgb(156, 155, 155);
+    color:white;
+    border: none;
+    font: 400 22px "Century Gothic";
+    border-radius: 5px;
+}
+.admininput {
+    width: 90px;
+    border: none;
+    background-color: transparent;
+    color:rgb(209, 151, 151);
+    font: 500 14px "Century Gothic";
+}
+.admininput:active, .admininput:focus {
+    outline: none;
+    color:rgb(215, 42, 195);
+}
+@media (max-width: 1300px) {
+    .admin-sidebar{
+        display: none;
+    }
+
+    .admin-header #admin-hidden {
+        display: inline-block;
+        text-align: center;
+        height: 70px;
+        font-size: 50px;
+        color: white;
+        background-color: rgb(53, 51, 51);
+        border: none;           
+    }
+
+    .admin-header #admin-hidden .admin-dropdown-menu {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 70px;
+         background-color: white;
+        width: 170px;
+        height: 230px;
+    }
+
+    .admin-header #admin-hidden .admin-dropdown-menu-visible {
+        display: block;     
+    }
+
+    .admin-header #admin-hidden .admin-dropdown-menu li{
+        text-align: center;
+        font: 500 20px "Century Gothic";
+        color: rgb(100, 96, 96);
+        margin: 30px 0;
+    }
+
+    .admin-header #admin-hidden .admin-dropdown-menu li:hover {
+        color:rgb(74, 121, 248);        
+    }  
+    
+    .admin-main-div{
+        padding-left: 0;
+        padding-top: 90px;
+    }
+    
+    .admin-div-active, .admin-div-sold, .admin-div-users {
+        width: 1000px;   
+        margin: 70px auto;
+        overflow: auto;
+        padding: 5px;
+
+    }
+    .admin-div-active table tr, .admin-div-sold table tr, .admin-div-users table tr{
+        height: 150px;
+    }
+  
+}
+ 
+  
